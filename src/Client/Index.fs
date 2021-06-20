@@ -1,6 +1,19 @@
 module Index
 
 open Elmish
+open System.Text.RegularExpressions
+
+let (|CompiledMatch|_|) pattern input =
+    if isNull input then
+        None
+    else
+        let m =
+            Regex.Match(input, pattern, RegexOptions.Singleline)
+
+        if m.Success then
+            Some [ for x in m.Groups -> x ]
+        else
+            None
 
 type Minigame =
     { img: string
@@ -21,32 +34,142 @@ let init () : Model * Cmd<Msg> =
                     img = "/bridge-game.png"
                     title = "Bridge Fight"
                     description = "A game where you use limited blocks to pass your opponent and score in their goal."
-                    md = "/bridge-game.md"
+                    md =
+                        """
+# Bridge Fight
+## Goal
+To jump into the hoop below your opponent's spawn 5 times
+## Scaffolding
+Each round you are given a block which you can use to make barriers for your opponent or get around your opponent's barriers.
+After placing this block you are given a second block which can only be placed against the first block and will destroy the first block.
+## Items (per round)
+* Iron Sword
+  * Can destroy all placed blocks but not original map blocks
+* One scaffolding block
+* One Bow
+* 8 Golden Apples
+* 16 Arrows
+* Leather armor
+                        """
                     gh = "bridgefight"}
-                  {
-                    img = "/wool-world.png"
-                    title = "Wool World"
-                    description = "A world of infinite wool and creativity."
-                    md = "/wool-world.md"
-                    gh = "Wool-World"}
-                  {
-                    img = "/ice-boom.png"
-                    title = "Ice Boom"
-                    description = "Explode opponents off an ever shrinking platform."
-                    md = "/ice-boom.md"
-                    gh = "iceboom"}
-                  {
-                    img = "/survival.png"
-                    title = "Survival"
-                    description = "Vanilla minecraft, adapted for the PRIMD server."
-                    md = "/survival.md"
-                    gh = "HubVanilla"}
                   {
                     img = "/missile-mayhem.png"
                     title = "Missile Mayhem"
                     description = "A missile wars remake where you send missiles at your opponent to win."
-                    md = "/missile-mayhem.md"
+                    md =
+                        """
+# Missile Mayhem
+## Items
+* Bow / Arrows
+  * Bow has knockback and flame
+  * Given 2 arrows per collection and on start and stack infinitely
+* Tomohawk
+  * A basic missile
+  * Given on start
+* Shieldbuster
+  * A missile that is able to fly through blocks without stopping
+* Lightning
+  * A missile that flies at twice the speed
+* Juggernaut
+  * A missile with extra tnt
+* Custom Missile
+  * A 3x3x17 size missile you can build in the lobby
+  * Can have upto 12 tnt
+* Shield
+  * A snowball that when thrown turns into a glass shield that can stop missiles
+  * Given on start
+* Fireball
+  * Can be placed down and punched or put in offhand to load it into bow
+  * A projectile that explodes on impact
+  * Given on start
+* TNT
+  * Only availible by breaking it and is the only block you can collect and place
+## Missile Sets
+* New - Hard to ride, but good at what they do
+* Old - Slightly slower missiles, but have a large amonunt of easily defusable tnt
+* Thin - 1 wide missiles, more easy to be knocked off of but more resistant to being blown up
+* Flat - 1 tall missiles, hard to be knoked off of but morer difficult to defuse
+## Team types
+* 2 teams
+* 4 teams
+## Game modes
+* Normal
+  * Destroy the wall behind your opponent's base to win
+* King of the Hill
+  * Stand on the center platform for 2.5 minutes to win
+* Capture the Flag
+  * Capture the flag behind your opponent's base and bring it back to your own to win
+## Maps
+* Normal, No Walls, Small Walls, Center Wall, Platforms, Weak Center, Bridge, and Diagonal
+* Game is a random map from the players in the game
+## Commands - activited via /trigger
+* ToggleRanked - Toggles between doing ranked matches and not. Games will only be ranked if every player has ranked on.
+* JoinSpectators - Allows you to switch to spectator team mid game
+* JoinGreen - Can be used to switch team to green in queue
+* JoinBlue - Can be used to switch team to blue in queue
+* JoinRed - Can be used to switch team to red in queue
+* JoinBlack - Can be used to switch team to black in queue
+* Practice - Moves you to practice where you have infinite items
+* ClearPractice - Clears the practice area you're in
+* Heal - Can be used in practice to instantly heal to full health
+* Leave - Quit to lobby
+* ChooseMap - Get a menu to switch your map
+* MapVote - Select a map id to vote for
+* GiveBook - Get a book explaining the game
+* ChooseMissileSet - Select a missile set id
+* MissileSetSelect - Get a menu to switch your missile set
+                        """
                     gh = "MissileMayhem"}
+                  {
+                    img = "/ice-boom.png"
+                    title = "Ice Boom"
+                    description = "Explode opponents off ever shrinking platforms."
+                    md =
+                        """
+# Ice Boom
+## Goal
+To remain on the top ice platform while knocking your opponents off.
+## Mechanics
+You play on a platform of string where:
+* Air turns to frosted ice
+* Water turns to string
+This means you can either break the string with your fist or blow it up with the creeper eggs you are given. Note you do not take damage so dying directly to the explosion is not a concern.
+You can use either punching or explosions to knock your opponents off.
+## Maps
+* Small
+  * Everyone spawns in the same place
+  * Given 16 creeper eggs
+* Big
+  * Everyone spawns in different places with a ice platform below them
+  * Given 32 creeper eggs
+  * Map size is twice as large
+                        """
+                    gh = "iceboom"}
+                  {
+                    img = "/wool-world.png"
+                    title = "Wool World"
+                    description = "A world of infinite wool and creativity."
+                    md =
+                        """
+# Wool World
+## Items
+* Infinite wool of Blue, Red, White, Black, Green, Purple, magenta
+* Infinite signs
+* Efficency 1 Shears
+## Commands
+* Spawnpoint - set your spawnpoint at your current location
+                        """
+                    gh = "Wool-World"}
+                  {
+                    img = "/survival.png"
+                    title = "Survival"
+                    description = "Vanilla minecraft, adapted for the PRIMD server."
+                    md =
+                        """
+# Survival
+Pure vanilla survival experience
+                        """
+                    gh = "HubVanilla"}
               ]
           scroll = 0.0
           baseState = true
@@ -59,11 +182,108 @@ let init () : Model * Cmd<Msg> =
 let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
     match msg with
         | Scroll s ->
-            printfn "%f" s
             {model with scroll=s;baseState=false}, Cmd.none
 
 open Feliz
 open Feliz.Bulma
+
+let rec mdList (listMd: string) =
+    match listMd with
+    | CompiledMatch @"^\n(.*)" [_;rest] ->
+        mdList rest.Value
+    | CompiledMatch @"^\* (([^\n]*?)\n)((?:( +)\* .*?\n)(?:\4 *\* .*?\n)*)(.*)" [_;_;firstline;subelems;_;rest] ->
+        List.Cons (Html.li [
+                Bulma.color.hasTextGreyLighter
+                prop.children [
+                    Html.p [
+                        prop.style [
+                            style.marginBottom 0
+                        ]
+                        prop.text firstline.Value
+                    ]
+                    Html.ul [
+                        prop.style [
+                            style.marginTop 0
+                        ]
+                        prop.children (
+                            subelems.Value.Split "\n"
+                            |> List.ofArray
+                            |> List.filter (fun s -> s.Length > 0)
+                            |> List.map (fun l ->
+                                Regex.Match(l, @" +(.*)", RegexOptions.Singleline).Groups.[1].Value)
+                            |> List.fold (fun s e -> s+e+"\n") ""
+                            |> mdList)
+                    ]
+                ]
+            ], mdList rest.Value)
+    | CompiledMatch @"^\* ((.*?)\n)?(.*)" [_;_;firstline;rest] ->
+        List.Cons (Html.li [
+                Bulma.color.hasTextGreyLighter
+                prop.text firstline.Value
+            ], mdList rest.Value)
+    | CompiledMatch @"^\s*" [_] ->
+        []
+    | failState -> failwith ("Invalid State: \""+failState+"\"")
+
+let rec mdElement (markdown: string) =
+    match markdown with
+    | CompiledMatch @"^# ((.*?)\n)?(.*)" [_;_;firstline;rest] ->
+        if firstline.Success then
+            List.Cons(
+                Html.h1 [
+                    Bulma.color.hasTextGreyLighter
+                    prop.text firstline.Value
+                ],
+                mdElement rest.Value)
+        else
+            Html.h1 [
+                Bulma.color.hasTextGreyLighter
+                prop.text rest.Value
+            ] |> List.singleton
+    | CompiledMatch @"^## ((.*?)\n)?(.*)" [_;_;firstline;rest] ->
+        if firstline.Success then
+            List.Cons(
+                Html.h2 [
+                    Bulma.color.hasTextGreyLighter
+                    prop.text firstline.Value
+                ],
+                mdElement rest.Value)
+        else
+            Html.h2 [
+                Bulma.color.hasTextGreyLighter
+                prop.text rest.Value
+            ] |> List.singleton
+    | CompiledMatch @"^### ((.*?)\n)?(.*)" [_;_;firstline;rest] ->
+        if firstline.Success then
+            List.Cons(
+                Html.h3 [
+                    Bulma.color.hasTextGreyLighter
+                    prop.text firstline.Value
+                ],
+                mdElement rest.Value)
+        else
+            Html.h3 [
+                Bulma.color.hasTextGreyLighter
+                prop.text rest.Value
+            ] |> List.singleton
+    | CompiledMatch @"^((?: *\* .*?\n)+)(.*)" [_;list;rest] ->
+        List.Cons(
+            Html.ul [
+                prop.children (mdList list.Value)
+            ],
+            mdElement rest.Value)
+    | CompiledMatch @"^(.*?)\n(.*)" [_;text;rest] ->
+        List.Cons(
+            Html.p [
+                Bulma.color.hasTextGreyLighter
+                prop.text text.Value
+            ],
+            mdElement rest.Value)
+    | text ->
+        Html.p [
+            Bulma.color.hasTextGreyLighter
+            prop.text text
+        ] |> List.singleton
 
 [<ReactComponent>]
 let iconText model =
@@ -109,7 +329,20 @@ let ghLink (name:string) =
 [<ReactComponent>]
 let minigames model dispatch =
     let pad cols games =
-        {img="/coming_soon.png";title="Coming Soon";description="More games are always being developed, and anyone can contribute games if they want.";gh="Hub";md="coming_soon.md"}
+        {
+            img="/coming_soon.png"
+            title="Coming Soon"
+            description="More games are always being developed, and anyone can contribute games if they want."
+            gh="Hub"
+            md=
+                """
+# Coming Soon
+## Potential Upcoming Projects
+* A noita esque rougelike
+* Extremely customizable PvP
+## Contributing
+You can suggest features, report bugs, or contribute to development by going to the github links at the bottom of each card.
+                """}
         |> List.replicate (cols-(List.length games))
         |> List.append games
     let cols = 3
@@ -165,13 +398,9 @@ let minigames model dispatch =
                                                 Bulma.box [
                                                     Bulma.color.hasBackgroundBlackTer
                                                     prop.children [
-                                                        Bulma.title [
-                                                            Bulma.color.hasTextGreyLighter
-                                                            prop.text minigame.title
-                                                        ]
                                                         Bulma.content [
                                                             Bulma.color.hasTextGreyLighter
-                                                            prop.text minigame.description
+                                                            prop.children (mdElement minigame.md)
                                                         ]
                                                     ]
                                                 ]
@@ -257,11 +486,11 @@ let view (model: Model) (dispatch: Msg -> unit) =
                                 Bulma.color.hasTextGreyLighter
                                 Bulma.title.is2
                                 prop.children [
-                                    ruleText "I. Treat all players with respect. No derogatory, discriminatory, or hateful speech will be tolerated. This includes trolling,  harassment, doxxing, and scamming others."
+                                    ruleText "I. Treat all players with respect. No derogatory, discriminatory, or hateful speech will be tolerated. This includes spawn trapping, harassment, doxxing, and scamming others."
                                     ruleText "II. Have an appropriate username and skin."
-                                    ruleText "III. Don't cheat. Hacks, cross-teaming, team griefing, lag machines, alt. account abuse, spawn trapping  & auto-click/macros are considered cheating. Please report bugs to moderators."
+                                    ruleText "III. Don't cheat. Hacks, cross-teaming, team griefing, lag machines, alt. account abuse & auto-click/macros are considered cheating. Please report bugs to moderators."
                                     ruleText "IV. No advertising of social media posts, videos, accounts, or channels without express permission from a PRIMD server moderator."
-                                    ruleText "V. Primd reserves the right to amend this document and expel or ban players who do not follow these bylaws without notice."
+                                    ruleText "V. PRIMD reserves the right to amend this document and expel or ban players who do not follow these rules without notice."
                                 ]
                             ]
                         ]

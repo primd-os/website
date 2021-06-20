@@ -8,6 +8,7 @@ nuget Expecto
 
 nuget Fable.Browser.Dom
 nuget Fable.Core
+nuget Fable.SimpleHttp
 nuget Fable.Elmish
 nuget Fable.Elmish.React
 nuget Fable.Elmish.Debugger
