@@ -16,25 +16,25 @@ let (|CompiledMatch|_|) pattern input =
             None
 
 type Minigame =
-    { img: string
-      title: string
-      description: string
-      md: string
-      gh: string }
+    { Img: string
+      Title: string
+      Description: string
+      Md: string
+      Gh: string }
 
-type Model = { minigames: Minigame list; scroll: double; baseState: bool }
+type Model = { Minigames: Minigame list; Scroll: double; BaseState: bool }
 
 type Msg = Scroll of double
 
 let init () : Model * Cmd<Msg> =
     let model =
-        { minigames =
+        { Minigames =
               [
                   {
-                    img = "/bridge-game.png"
-                    title = "Bridge Fight"
-                    description = "A game where you use limited blocks to pass your opponent and score in their goal."
-                    md =
+                    Img = "/bridge-game.png"
+                    Title = "Bridge Fight"
+                    Description = "A game where you use limited blocks to pass your opponent and score in their goal."
+                    Md =
                         """
 # Bridge Fight
 ## Goal
@@ -51,12 +51,12 @@ After placing this block you are given a second block which can only be placed a
 * 16 Arrows
 * Leather armor
                         """
-                    gh = "bridgefight"}
+                    Gh = "bridgefight"}
                   {
-                    img = "/missile-mayhem.png"
-                    title = "Missile Mayhem"
-                    description = "A missile wars remake where you send missiles at your opponent to win."
-                    md =
+                    Img = "/missile-mayhem.png"
+                    Title = "Missile Mayhem"
+                    Description = "A missile wars remake where you send missiles at your opponent to win."
+                    Md =
                         """
 # Missile Mayhem
 ## Items
@@ -119,12 +119,12 @@ After placing this block you are given a second block which can only be placed a
 * ChooseMissileSet - Select a missile set id
 * MissileSetSelect - Get a menu to switch your missile set
                         """
-                    gh = "MissileMayhem"}
+                    Gh = "MissileMayhem"}
                   {
-                    img = "/ice-boom.png"
-                    title = "Ice Boom"
-                    description = "Explode opponents off ever shrinking platforms."
-                    md =
+                    Img = "/ice-boom.png"
+                    Title = "Ice Boom"
+                    Description = "Explode opponents off ever shrinking platforms."
+                    Md =
                         """
 # Ice Boom
 ## Goal
@@ -144,12 +144,12 @@ You can use either punching or explosions to knock your opponents off.
   * Given 32 creeper eggs
   * Map size is twice as large
                         """
-                    gh = "iceboom"}
+                    Gh = "iceboom"}
                   {
-                    img = "/wool-world.png"
-                    title = "Wool World"
-                    description = "A world of infinite wool and creativity."
-                    md =
+                    Img = "/wool-world.png"
+                    Title = "Wool World"
+                    Description = "A world of infinite wool and creativity."
+                    Md =
                         """
 # Wool World
 ## Items
@@ -159,20 +159,20 @@ You can use either punching or explosions to knock your opponents off.
 ## Commands
 * Spawnpoint - set your spawnpoint at your current location
                         """
-                    gh = "Wool-World"}
+                    Gh = "Wool-World"}
                   {
-                    img = "/survival.png"
-                    title = "Survival"
-                    description = "Vanilla minecraft, adapted for the PRIMD server."
-                    md =
+                    Img = "/survival.png"
+                    Title = "Survival"
+                    Description = "Vanilla minecraft, adapted for the PRIMD server."
+                    Md =
                         """
 # Survival
 Pure vanilla survival experience
                         """
-                    gh = "HubVanilla"}
+                    Gh = "HubVanilla"}
               ]
-          scroll = 0.0
-          baseState = true
+          Scroll = 0.0
+          BaseState = true
         }
 
     let cmd = Cmd.none
@@ -182,7 +182,7 @@ Pure vanilla survival experience
 let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
     match msg with
         | Scroll s ->
-            {model with scroll=s;baseState=false}, Cmd.none
+            {model with Scroll=s;BaseState=false}, Cmd.none
 
 open Feliz
 open Feliz.Bulma
@@ -286,13 +286,13 @@ let rec mdElement (markdown: string) =
         ] |> List.singleton
 
 [<ReactComponent>]
-let iconText model =
+let IconText model =
     Bulma.icon [
         prop.style [
             style.alignSelf.center
             style.bottom (length.rem 1)
             style.position.absolute
-            style.opacity (1.-model.scroll/100.)
+            style.opacity (1.-model.Scroll/100.)
         ]
         prop.children [
             Html.i [
@@ -302,7 +302,7 @@ let iconText model =
     ]
 
 [<ReactComponent>]
-let ruleText (rule: string) =
+let RuleText (rule: string) =
     Bulma.box [
         Bulma.color.hasBackgroundBlackTer
         Bulma.color.hasTextGreyLighter
@@ -310,7 +310,7 @@ let ruleText (rule: string) =
     ]
 
 [<ReactComponent>]
-let ghLink (name:string) =
+let GHLink (name:string) =
     Html.a [
         prop.children [
             Bulma.panelIcon [
@@ -327,14 +327,14 @@ let ghLink (name:string) =
     ]
 
 [<ReactComponent>]
-let minigames model dispatch =
+let Minigames model dispatch =
     let pad cols games =
         {
-            img="/coming_soon.png"
-            title="Coming Soon"
-            description="More games are always being developed, and anyone can contribute games if they want."
-            gh="Hub"
-            md=
+            Img="/coming_soon.png"
+            Title="Coming Soon"
+            Description="More games are always being developed, and anyone can contribute games if they want."
+            Gh="Hub"
+            Md=
                 """
 # Coming Soon
 ## Potential Upcoming Projects
@@ -353,7 +353,7 @@ You can suggest features, report bugs, or contribute to development by going to 
         ]
         Bulma.tile.isVertical
         prop.children [
-            for minigameGroup in model.minigames |> List.chunkBySize cols ->
+            for minigameGroup in model.Minigames |> List.chunkBySize cols ->
                 Bulma.tile [
                     Bulma.spacing.my2
                     prop.children [
@@ -374,7 +374,7 @@ You can suggest features, report bugs, or contribute to development by going to 
                                             prop.onClick (fun _ -> toggleState(true))
                                             Bulma.image.is4by3
                                             prop.children [
-                                                Html.img [ prop.src minigame.img ]
+                                                Html.img [ prop.src minigame.Img ]
                                             ]
                                         ]
                                     ]
@@ -383,10 +383,10 @@ You can suggest features, report bugs, or contribute to development by going to 
                                         prop.children [
                                             Bulma.title [
                                                 Bulma.color.hasTextGreyLighter
-                                                prop.text minigame.title
+                                                prop.text minigame.Title
                                             ]
-                                            Bulma.content minigame.description
-                                            ghLink minigame.gh
+                                            Bulma.content minigame.Description
+                                            GHLink minigame.Gh
                                         ]
                                     ]
                                     Bulma.modal [
@@ -400,7 +400,7 @@ You can suggest features, report bugs, or contribute to development by going to 
                                                     prop.children [
                                                         Bulma.content [
                                                             Bulma.color.hasTextGreyLighter
-                                                            prop.children (mdElement minigame.md)
+                                                            prop.children (mdElement minigame.Md)
                                                         ]
                                                     ]
                                                 ]
@@ -415,7 +415,7 @@ You can suggest features, report bugs, or contribute to development by going to 
     ]
 
 let view (model: Model) (dispatch: Msg -> unit) =
-    if model.baseState then Browser.Dom.window.addEventListener ("scroll", (fun _ -> dispatch (Scroll Browser.Dom.window.scrollY)))
+    if model.BaseState then Browser.Dom.window.addEventListener ("scroll", (fun _ -> dispatch (Scroll Browser.Dom.window.scrollY)))
     Bulma.block [
         Bulma.color.hasBackgroundBlackBis
         prop.children [
@@ -435,7 +435,7 @@ let view (model: Model) (dispatch: Msg -> unit) =
                             Html.img [ prop.src "/primd_logo.png" ]
                         ]
                     ]
-                    iconText model
+                    IconText model
                 ]
             ]
             Bulma.title [
@@ -456,10 +456,10 @@ let view (model: Model) (dispatch: Msg -> unit) =
                         prop.text "play.primd.net"
                     ]
                     Html.br []
-                    ghLink "Hub"
+                    GHLink "Hub"
                 ]
             ]
-            minigames model dispatch
+            Minigames model dispatch
             Bulma.columns [
                 columns.isGapless
                 prop.style [
@@ -486,11 +486,11 @@ let view (model: Model) (dispatch: Msg -> unit) =
                                 Bulma.color.hasTextGreyLighter
                                 Bulma.title.is2
                                 prop.children [
-                                    ruleText "I. Treat all players with respect. No derogatory, discriminatory, or hateful speech will be tolerated. This includes spawn trapping, harassment, doxxing, and scamming others."
-                                    ruleText "II. Have an appropriate username and skin."
-                                    ruleText "III. Don't cheat. Hacks, cross-teaming, team griefing, lag machines, alt. account abuse & auto-click/macros are considered cheating. Please report bugs to moderators."
-                                    ruleText "IV. No advertising of social media posts, videos, accounts, or channels without express permission from a PRIMD server moderator."
-                                    ruleText "V. PRIMD reserves the right to amend this document and expel or ban players who do not follow these rules without notice."
+                                    RuleText "I. Treat all players with respect. No derogatory, discriminatory, or hateful speech will be tolerated. This includes spawn trapping, harassment, doxxing, and scamming others."
+                                    RuleText "II. Have an appropriate username and skin."
+                                    RuleText "III. Don't cheat. Hacks, cross-teaming, team griefing, lag machines, alt. account abuse & auto-click/macros are considered cheating. Please report bugs to moderators."
+                                    RuleText "IV. No advertising of social media posts, videos, accounts, or channels without express permission from a PRIMD server moderator."
+                                    RuleText "V. PRIMD reserves the right to amend this document and expel or ban players who do not follow these rules without notice."
                                 ]
                             ]
                         ]
