@@ -304,6 +304,9 @@ let IconText model =
 [<ReactComponent>]
 let RuleText (rule: string) =
     Bulma.box [
+        prop.style [
+            style.borderRadius 10
+        ]
         Bulma.color.hasBackgroundBlackTer
         Bulma.color.hasTextGreyLighter
         prop.text rule
@@ -356,11 +359,14 @@ You can suggest features, report bugs, or contribute to development by going to 
             for minigameGroup in model.Minigames |> List.chunkBySize cols ->
                 Bulma.tile [
                     Bulma.spacing.my2
+                    prop.style [
+                        style.justifyContent.spaceBetween
+                        style.columnGap (length.rem 1)
+                    ]
                     prop.children [
                         for minigame in minigameGroup |> pad cols ->
                             let modalState, toggleState = React.useState(false)
                             Bulma.card [
-                                Bulma.spacing.mx2
                                 Bulma.color.hasBackgroundBlackTer
                                 Bulma.color.hasTextGreyLighter
                                 prop.style [
@@ -474,13 +480,13 @@ let view (model: Model) (dispatch: Msg -> unit) =
                             Bulma.text.hasTextCentered
                             Bulma.title.is2
                             prop.style [
-                                style.marginTop (length.percent 40)
+                                style.marginTop (length.percent 30)
                             ]
                             prop.text "Server Rules"
                         ]
                     ]
                     Bulma.column [
-                        column.isThreeFifths
+                        column.isTwoThirds
                         prop.children [
                             Bulma.content [
                                 Bulma.color.hasTextGreyLighter
