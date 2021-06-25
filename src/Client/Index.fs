@@ -2,6 +2,7 @@ module Index
 
 open Elmish
 open System.Text.RegularExpressions
+open Browser.Dom
 
 let (|CompiledMatch|_|) pattern input =
     if isNull input then
@@ -288,6 +289,7 @@ let rec mdElement (markdown: string) =
 [<ReactComponent>]
 let IconText model =
     Bulma.icon [
+        prop.onClick (fun _ -> window.scrollTo ({|top=window.innerHeight;left=0.;behavior= (Browser.Types.ScrollBehavior.Smooth)|}:Browser.Types.ScrollToOptions))
         prop.style [
             style.alignSelf.center
             style.bottom (length.rem 1)
@@ -316,11 +318,14 @@ let RuleText (rule: string) =
 let GHLink (name:string) =
     Html.a [
         prop.children [
-            Bulma.panelIcon [
-                Html.img [
-                    prop.src "/GitHub-Mark-Light-64px.png"
-                    prop.style [
-                        style.marginTop (length.rem 0.5)
+            Bulma.icon [
+                prop.style [
+                    style.alignSelf.center
+                ]
+                Bulma.spacing.mr1
+                prop.children [
+                    Html.i [
+                        prop.className "fab fa-github"
                     ]
                 ]
             ]
@@ -503,21 +508,36 @@ let view (model: Model) (dispatch: Msg -> unit) =
                     ]
                 ]
             ]
+
             Bulma.level [
                 Bulma.size.isSize5
                 Bulma.spacing.mt6
                 Bulma.spacing.pb3
                 prop.children [
                     Bulma.levelItem [
+                        GHLink "website"
+                    ]
+                ]
+            ]
+
+            Bulma.level [
+                Bulma.size.isSize5
+                Bulma.spacing.pb3
+                prop.children [
+                    Bulma.levelItem [
                         Html.a [
                             Bulma.text.hasTextCentered
+                            Bulma.size.isSize1
                             prop.children [
-                                Html.img [
-                                    Bulma.spacing.mx3
-                                    prop.src "/Discord-Logo-Color.png"
+                                Bulma.icon [
+                                    Bulma.spacing.mx5
                                     prop.style [
-                                        style.height 32
-                                        style.maxHeight 32
+                                        style.alignSelf.center
+                                    ]
+                                    prop.children [
+                                        Html.i [
+                                            prop.className "fab fa-discord"
+                                        ]
                                     ]
                                 ]
                             ]
@@ -525,13 +545,17 @@ let view (model: Model) (dispatch: Msg -> unit) =
                         ]
                         Html.a [
                             Bulma.text.hasTextCentered
+                            Bulma.size.isSize1
                             prop.children [
-                                Html.img [
-                                    Bulma.spacing.mx3
-                                    prop.src "/GitHub-Mark-Light-64px.png"
+                                Bulma.icon [
+                                    Bulma.spacing.mx5
                                     prop.style [
-                                        style.height 32
-                                        style.maxHeight 32
+                                        style.alignSelf.center
+                                    ]
+                                    prop.children [
+                                        Html.i [
+                                            prop.className "fab fa-github"
+                                        ]
                                     ]
                                 ]
                             ]
