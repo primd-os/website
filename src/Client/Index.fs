@@ -32,28 +32,6 @@ let init () : Model * Cmd<Msg> =
         { Minigames =
               [
                   {
-                    Img = "/bridge-game.png"
-                    Title = "Bridge Fight"
-                    Description = "A game where you use limited blocks to pass your opponent and score in their goal."
-                    Md =
-                        """
-# Bridge Fight
-## Goal
-To jump into the hoop below your opponent's spawn 5 times
-## Scaffolding
-Each round you are given a block which you can use to make barriers for your opponent or get around your opponent's barriers.
-After placing this block you are given a second block which can only be placed against the first block and will destroy the first block.
-## Items (per round)
-* Iron Sword
-  * Can destroy all placed blocks but not original map blocks
-* One scaffolding block
-* One Bow
-* 8 Golden Apples
-* 16 Arrows
-* Leather armor
-                        """
-                    Gh = "bridgefight"}
-                  {
                     Img = "/missile-mayhem.png"
                     Title = "Missile Mayhem"
                     Description = "A missile wars remake where you send missiles at your opponent to win."
@@ -86,7 +64,7 @@ After placing this block you are given a second block which can only be placed a
 * TNT
   * Only availible by breaking it and is the only block you can collect and place
 ## Missile Sets
-* New - Hard to ride, but good at what they do
+* New - A basic set using newer redstone mechanics
 * Old - Slightly slower missiles, but have a large amonunt of easily defusable tnt
 * Thin - 1 wide missiles, more easy to be knocked off of but more resistant to being blown up
 * Flat - 1 tall missiles, hard to be knoked off of but morer difficult to defuse
@@ -97,70 +75,43 @@ After placing this block you are given a second block which can only be placed a
 * Normal
   * Destroy the wall behind your opponent's base to win
 * King of the Hill
-  * Stand on the center platform for 2.5 minutes to win
+  * Stand on the center platform for a set time to win
 * Capture the Flag
   * Capture the flag behind your opponent's base and bring it back to your own to win
 ## Maps
 * Normal, No Walls, Small Walls, Center Wall, Platforms, Weak Center, Bridge, and Diagonal
 * Game is a random map from the players in the game
 ## Commands - activited via /trigger
-* ToggleRanked - Toggles between doing ranked matches and not. Games will only be ranked if every player has ranked on.
-* JoinSpectators - Allows you to switch to spectator team mid game
-* JoinGreen - Can be used to switch team to green in queue
-* JoinBlue - Can be used to switch team to blue in queue
-* JoinRed - Can be used to switch team to red in queue
-* JoinBlack - Can be used to switch team to black in queue
-* Practice - Moves you to practice where you have infinite items
+* practice - Moves you to practice where you have infinite items
 * ClearPractice - Clears the practice area you're in
-* Heal - Can be used in practice to instantly heal to full health
-* Leave - Quit to lobby
+* heal - Can be used in practice to instantly heal to full health
+* leave - Quit to lobby
 * ChooseMap - Get a menu to switch your map
-* MapVote - Select a map id to vote for
-* GiveBook - Get a book explaining the game
 * ChooseMissileSet - Select a missile set id
-* MissileSetSelect - Get a menu to switch your missile set
+* CreateGame - Get a menu to switch your missile set
                         """
                     Gh = "MissileMayhem"}
                   {
-                    Img = "/ice-boom.png"
-                    Title = "Ice Boom"
-                    Description = "Explode opponents off ever shrinking platforms."
+                    Img = "/biome-bout.png"
+                    Title = "Biome Bout"
+                    Description = "A mix of skywars and UHC in a unique format"
                     Md =
                         """
-# Ice Boom
-## Goal
-To remain on the top ice platform while knocking your opponents off.
-## Mechanics
-You play on a platform of string where:
-* Air turns to frosted ice
-* Water turns to string
-This means you can either break the string with your fist or blow it up with the creeper eggs you are given. Note you do not take damage so dying directly to the explosion is not a concern.
-You can use either punching or explosions to knock your opponents off.
-## Maps
-* Small
-  * Everyone spawns in the same place
-  * Given 16 creeper eggs
-* Big
-  * Everyone spawns in different places with a ice platform below them
-  * Given 32 creeper eggs
-  * Map size is twice as large
+# Biome Bout
+A mix of skywars and UHC in a unique format featuring biomes and structures from vanilla minecraft with loot chests.
                         """
-                    Gh = "iceboom"}
+                    Gh = "BiomeBout"}
                   {
-                    Img = "/wool-world.png"
-                    Title = "Wool World"
-                    Description = "A world of infinite wool and creativity."
+                    Img = "/mini-railways.png"
+                    Title = "Mini Railways"
+                    Description = "A minecraft twist on mini motorways"
                     Md =
                         """
-# Wool World
-## Items
-* Infinite wool of Blue, Red, White, Black, Green, Purple, magenta
-* Infinite signs
-* Efficency 1 Shears
-## Commands
-* Spawnpoint - set your spawnpoint at your current location
+# Mini Railways
+A game where your goal is to bring items from a shulker box to the matching color hopper using hopper minecarts.
+It features a many different items you can use and a shop to buy new ones.
                         """
-                    Gh = "Wool-World"}
+                    Gh = "Mini-Railways"}
                   {
                     Img = "/survival.png"
                     Title = "Survival"
@@ -171,6 +122,40 @@ You can use either punching or explosions to knock your opponents off.
 Pure vanilla survival experience
                         """
                     Gh = "HubVanilla"}
+                  {
+                    Img = "/party-games.png"
+                    Title = "Party Games"
+                    Description = "A work in progress interpretation of party games"
+                    Md =
+                        """
+# Party Games
+## Game List
+### Pillar Race
+A game where you have to get to the other side of a bunvh of pillars
+### Ice Boom
+A game where you hit opponents off of shirking platforms of ice
+### Mountain Climb
+A race to the top of a mountain
+### SumoSpleef
+A mix between sumo and spleef using rocket launchers
+### DripSpleaf
+Try to stay off the ground as the dripleaves rise
+                        """
+                    Gh = "party-games"}
+                  {
+                    Img = "/wool-world.png"
+                    Title = "Wool World"
+                    Description = "A world of infinite wool and creativity."
+                    Md =
+                        """
+# Wool World
+## Items
+* Infinite wool and signs
+* Efficency I Shears
+## Commands
+* spawnpoint - set your spawnpoint at your current location
+                        """
+                    Gh = "Wool-World"}
               ]
           Scroll = 0.0
           BaseState = true
