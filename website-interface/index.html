@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8080/ -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>PRIMD</title>
+
+    <link rel="icon" type="image/png" href="./PRIMD_files/primd_logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <script type="text/javascript" src="./PRIMD_files/app.js"></script>
+</head>
+
+<body class="vsc-initialized">
+    <div id="elmish-app">
+        <div class="block has-background-black-bis">
+            <section class="hero is-fullheight is-primary"
+                style="background-size: cover; background-image: url(&quot;./PRIMD_files/background.png&quot;); position: relative;">
+                <div class="hero-body" style="align-self: center;"><img src="./PRIMD_files/primd_logo.png"></div><span
+                    class="icon" style="align-self: center; bottom: 1rem; position: absolute; opacity: 1;", id="scrollArrow" onclick="scrollDown()"><i
+                        class="fas fa-arrow-down"></i></span>
+            </section>
+            <h1 class="title has-text-grey-lighter mt-6 has-text-centered is-1">PRIMD Minecraft Server</h1>
+            <h2 class="subtitle has-text-centered" style="line-height: 30px;"><code
+                    class="has-background-black-ter">play.primd.net</code><br><a
+                    href="https://github.com/primd-os/Hub"><span class="icon mr-1" style="align-self: center;"><i
+                            class="fab fa-github"></i></span><span>Hub</span></a></h2>
+            <div class="tile is-vertical" style="margin-left: 13%; margin-right: 13%;">
+                <div class="tile" style="justify-content: space-between; column-gap: 1rem;">
+                    <div class="card has-background-black-ter has-text-grey-lighter mt-4"
+                        style="border-radius: 10px; overflow: hidden; width: 100%;" onclick="toggleModal(this)">
+                        <div class="card-image">
+                            <figure class="image is-4by3"><img src="./PRIMD_files/missile-mayhem.png"></figure>
+                        </div>
+                        <div class="card-content">
+                            <h1 class="title has-text-grey-lighter">Missile Mayhem</h1>
+                            <div class="content">A missile wars remake where you send missiles at your opponent to win.
+                            </div><a href="https://github.com/primd-os/MissileMayhem"><span class="icon mr-1"
+                                    style="align-self: center;"><i
+                                        class="fab fa-github"></i></span><span>MissileMayhem</span></a>
+                        </div>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <div class="box has-background-black-ter">
+                                    <div class="content has-text-grey-lighter">
+                                        <p class="has-text-grey-lighter"></p>
+                                        <h1 class="has-text-grey-lighter">Missile Mayhem</h1>
+                                        <h2 class="has-text-grey-lighter">Items</h2>
+                                        <ul>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Bow / Arrows</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">Bow has knockback and flame</li>
+                                                    <li class="has-text-grey-lighter">Given 2 arrows per collection and
+                                                        on start and stack infinitely</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Tomohawk</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">A basic missile</li>
+                                                    <li class="has-text-grey-lighter">Given on start</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Shieldbuster</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">A missile that is able to fly
+                                                        through blocks without stopping</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Lightning</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">A missile that flies at twice the
+                                                        speed</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Juggernaut</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">A missile with extra tnt</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Custom Missile</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">A 3x3x17 size missile you can
+                                                        build in the lobby</li>
+                                                    <li class="has-text-grey-lighter">Can have upto 12 tnt</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Shield</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">A snowball that when thrown turns
+                                                        into a glass shield that can stop missiles</li>
+                                                    <li class="has-text-grey-lighter">Given on start</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Fireball</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">Can be placed down and punched or
+                                                        put in offhand to load it into bow</li>
+                                                    <li class="has-text-grey-lighter">A projectile that explodes on
+                                                        impact</li>
+                                                    <li class="has-text-grey-lighter">Given on start</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">TNT</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">Only availible by breaking it and
+                                                        is the only block you can collect and place</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <h2 class="has-text-grey-lighter">Missile Sets</h2>
+                                        <ul>
+                                            <li class="has-text-grey-lighter">New - A basic set using newer redstone
+                                                mechanics</li>
+                                            <li class="has-text-grey-lighter">Old - Slightly slower missiles, but have a
+                                                large amonunt of easily defusable tnt</li>
+                                            <li class="has-text-grey-lighter">Thin - 1 wide missiles, more easy to be
+                                                knocked off of but more resistant to being blown up</li>
+                                            <li class="has-text-grey-lighter">Flat - 1 tall missiles, hard to be knoked
+                                                off of but morer difficult to defuse</li>
+                                        </ul>
+                                        <h2 class="has-text-grey-lighter">Team types</h2>
+                                        <ul>
+                                            <li class="has-text-grey-lighter">2 teams</li>
+                                            <li class="has-text-grey-lighter">4 teams</li>
+                                        </ul>
+                                        <h2 class="has-text-grey-lighter">Game modes</h2>
+                                        <ul>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Normal</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">Destroy the wall behind your
+                                                        opponent's base to win</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">King of the Hill</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">Stand on the center platform for a
+                                                        set time to win</li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-text-grey-lighter">
+                                                <p style="margin-bottom: 0px;">Capture the Flag</p>
+                                                <ul style="margin-top: 0px;">
+                                                    <li class="has-text-grey-lighter">Capture the flag behind your
+                                                        opponent's base and bring it back to your own to win</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <h2 class="has-text-grey-lighter">Maps</h2>
+                                        <ul>
+                                            <li class="has-text-grey-lighter">Normal, No Walls, Small Walls, Center
+                                                Wall, Platforms, Weak Center, Bridge, and Diagonal</li>
+                                            <li class="has-text-grey-lighter">Game is a random map from the players in
+                                                the game</li>
+                                        </ul>
+                                        <h2 class="has-text-grey-lighter">Commands - activited via /trigger</h2>
+                                        <ul>
+                                            <li class="has-text-grey-lighter">practice - Moves you to practice where you
+                                                have infinite items</li>
+                                            <li class="has-text-grey-lighter">ClearPractice - Clears the practice area
+                                                you're in</li>
+                                            <li class="has-text-grey-lighter">heal - Can be used in practice to
+                                                instantly heal to full health</li>
+                                            <li class="has-text-grey-lighter">leave - Quit to lobby</li>
+                                            <li class="has-text-grey-lighter">ChooseMap - Get a menu to switch your map
+                                            </li>
+                                            <li class="has-text-grey-lighter">ChooseMissileSet - Select a missile set id
+                                            </li>
+                                            <li class="has-text-grey-lighter">CreateGame - Get a menu to switch your
+                                                missile set</li>
+                                        </ul>
+                                        <p class="has-text-grey-lighter"> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card has-background-black-ter has-text-grey-lighter mt-4"
+                        style="border-radius: 10px; overflow: hidden; width: 100%;" onclick="toggleModal(this)">
+                        <div class="card-image">
+                            <figure class="image is-4by3"><img src="./PRIMD_files/biome-bout.png"></figure>
+                        </div>
+                        <div class="card-content">
+                            <h1 class="title has-text-grey-lighter">Biome Bout</h1>
+                            <div class="content">A mix of skywars and UHC in a unique format</div><a
+                                href="https://github.com/primd-os/BiomeBout"><span class="icon mr-1"
+                                    style="align-self: center;"><i
+                                        class="fab fa-github"></i></span><span>BiomeBout</span></a>
+                        </div>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <div class="box has-background-black-ter">
+                                    <div class="content has-text-grey-lighter">
+                                        <p class="has-text-grey-lighter"></p>
+                                        <h1 class="has-text-grey-lighter">Biome Bout</h1>
+                                        <p class="has-text-grey-lighter">A mix of skywars and UHC in a unique format
+                                            featuring biomes and structures from vanilla minecraft with loot chests.</p>
+                                        <p class="has-text-grey-lighter"> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card has-background-black-ter has-text-grey-lighter mt-4"
+                        style="border-radius: 10px; overflow: hidden; width: 100%;" onclick="toggleModal(this)">
+                        <div class="card-image">
+                            <figure class="image is-4by3"><img src="./PRIMD_files/mini-railways.png"></figure>
+                        </div>
+                        <div class="card-content">
+                            <h1 class="title has-text-grey-lighter">Mini Railways</h1>
+                            <div class="content">A minecraft twist on mini motorways</div><a
+                                href="https://github.com/primd-os/Mini-Railways"><span class="icon mr-1"
+                                    style="align-self: center;"><i
+                                        class="fab fa-github"></i></span><span>Mini-Railways</span></a>
+                        </div>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <div class="box has-background-black-ter">
+                                    <div class="content has-text-grey-lighter">
+                                        <p class="has-text-grey-lighter"></p>
+                                        <h1 class="has-text-grey-lighter">Mini Railways</h1>
+                                        <p class="has-text-grey-lighter">A game where your goal is to bring items from a
+                                            shulker box to the matching color hopper using hopper minecarts.</p>
+                                        <p class="has-text-grey-lighter">It features a many different items you can use
+                                            and a shop to buy new ones.</p>
+                                        <p class="has-text-grey-lighter"> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tile" style="justify-content: space-between; column-gap: 1rem;">
+                    <div class="card has-background-black-ter has-text-grey-lighter mt-4"
+                        style="border-radius: 10px; overflow: hidden; width: 100%;" onclick="toggleModal(this)">
+                        <div class="card-image">
+                            <figure class="image is-4by3"><img src="./PRIMD_files/survival.png"></figure>
+                        </div>
+                        <div class="card-content">
+                            <h1 class="title has-text-grey-lighter">Survival</h1>
+                            <div class="content">Vanilla minecraft, adapted for the PRIMD server.</div><a
+                                href="https://github.com/primd-os/HubVanilla"><span class="icon mr-1"
+                                    style="align-self: center;"><i
+                                        class="fab fa-github"></i></span><span>HubVanilla</span></a>
+                        </div>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <div class="box has-background-black-ter">
+                                    <div class="content has-text-grey-lighter">
+                                        <p class="has-text-grey-lighter"></p>
+                                        <h1 class="has-text-grey-lighter">Survival</h1>
+                                        <p class="has-text-grey-lighter">Pure vanilla survival experience</p>
+                                        <p class="has-text-grey-lighter"> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card has-background-black-ter has-text-grey-lighter mt-4"
+                        style="border-radius: 10px; overflow: hidden; width: 100%;" onclick="toggleModal(this)">
+                        <div class="card-image">
+                            <figure class="image is-4by3"><img src="./PRIMD_files/party-games.png"></figure>
+                        </div>
+                        <div class="card-content">
+                            <h1 class="title has-text-grey-lighter">Party Games</h1>
+                            <div class="content">A work in progress interpretation of party games</div><a
+                                href="https://github.com/primd-os/party-games"><span class="icon mr-1"
+                                    style="align-self: center;"><i
+                                        class="fab fa-github"></i></span><span>party-games</span></a>
+                        </div>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <div class="box has-background-black-ter">
+                                    <div class="content has-text-grey-lighter">
+                                        <p class="has-text-grey-lighter"></p>
+                                        <h1 class="has-text-grey-lighter">Party Games</h1>
+                                        <h2 class="has-text-grey-lighter">Game List</h2>
+                                        <h3 class="has-text-grey-lighter">Pillar Race</h3>
+                                        <p class="has-text-grey-lighter">A game where you have to get to the other side
+                                            of a bunvh of pillars</p>
+                                        <h3 class="has-text-grey-lighter">Ice Boom</h3>
+                                        <p class="has-text-grey-lighter">A game where you hit opponents off of shirking
+                                            platforms of ice</p>
+                                        <h3 class="has-text-grey-lighter">Mountain Climb</h3>
+                                        <p class="has-text-grey-lighter">A race to the top of a mountain</p>
+                                        <h3 class="has-text-grey-lighter">SumoSpleef</h3>
+                                        <p class="has-text-grey-lighter">A mix between sumo and spleef using rocket
+                                            launchers</p>
+                                        <h3 class="has-text-grey-lighter">DripSpleaf</h3>
+                                        <p class="has-text-grey-lighter">Try to stay off the ground as the dripleaves
+                                            rise</p>
+                                        <p class="has-text-grey-lighter"> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card has-background-black-ter has-text-grey-lighter mt-4"
+                        style="border-radius: 10px; overflow: hidden; width: 100%;" onclick="toggleModal(this)">
+                        <div class="card-image">
+                            <figure class="image is-4by3"><img src="./PRIMD_files/wool-world.png"></figure>
+                        </div>
+                        <div class="card-content">
+                            <h1 class="title has-text-grey-lighter">Wool World</h1>
+                            <div class="content">A world of infinite wool and creativity.</div><a
+                                href="https://github.com/primd-os/Wool-World"><span class="icon mr-1"
+                                    style="align-self: center;"><i
+                                        class="fab fa-github"></i></span><span>Wool-World</span></a>
+                        </div>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <div class="box has-background-black-ter">
+                                    <div class="content has-text-grey-lighter">
+                                        <p class="has-text-grey-lighter"></p>
+                                        <h1 class="has-text-grey-lighter">Wool World</h1>
+                                        <h2 class="has-text-grey-lighter">Items</h2>
+                                        <ul>
+                                            <li class="has-text-grey-lighter">Infinite wool and signs</li>
+                                            <li class="has-text-grey-lighter">Efficency I Shears</li>
+                                        </ul>
+                                        <h2 class="has-text-grey-lighter">Commands</h2>
+                                        <ul>
+                                            <li class="has-text-grey-lighter">spawnpoint - set your spawnpoint at your
+                                                current location</li>
+                                        </ul>
+                                        <p class="has-text-grey-lighter"> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-gapless" style="margin-top: 2rem; margin-left: 13rem; margin-right: 13rem;">
+                <div class="column">
+                    <h1 class="title has-text-grey-lighter has-text-centered is-2" style="margin-top: 30%;">Server Rules
+                    </h1>
+                </div>
+                <div class="column is-two-thirds">
+                    <div class="content has-text-grey-lighter is-2">
+                        <div class="box has-background-black-ter has-text-grey-lighter" style="border-radius: 10px;">I.
+                            Treat all players with respect. No derogatory, discriminatory, or hateful speech will be
+                            tolerated. This includes spawn trapping, harassment, doxxing, and scamming others.</div>
+                        <div class="box has-background-black-ter has-text-grey-lighter" style="border-radius: 10px;">II.
+                            Have an appropriate username and skin.</div>
+                        <div class="box has-background-black-ter has-text-grey-lighter" style="border-radius: 10px;">
+                            III. Don't cheat. Hacks, cross-teaming, team griefing, lag machines, alt. account abuse
+                            &amp; auto-click/macros are considered cheating. Please report bugs to moderators.</div>
+                        <div class="box has-background-black-ter has-text-grey-lighter" style="border-radius: 10px;">IV.
+                            No advertising of social media posts, videos, accounts, or channels without express
+                            permission from a PRIMD server moderator.</div>
+                        <div class="box has-background-black-ter has-text-grey-lighter" style="border-radius: 10px;">V.
+                            PRIMD reserves the right to amend this document and expel or ban players who do not follow
+                            these rules without notice.</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="level is-size-5 mt-6 pb-3">
+                <div class="level-item"><a href="https://github.com/primd-os/website"><span class="icon mr-1"
+                            style="align-self: center;"><i class="fab fa-github"></i></span><span>website</span></a>
+                </div>
+            </nav>
+            <nav class="level is-size-5 pb-3">
+                <div class="level-item"><a class="is-size-1" href="http://discord.gg/S6TUQWt"><span class="icon mx-5"
+                            style="align-self: center;"><i class="fab fa-discord"></i></span></a><a class="is-size-1"
+                        href="https://github.com/primd-os"><span class="icon mx-5" style="align-self: center;"><i
+                                class="fab fa-github"></i></span></a></div>
+            </nav>
+        </div>
+    </div>
+</body>
+
+</html>

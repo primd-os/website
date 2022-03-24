@@ -1,33 +1,27 @@
 {
-    "private": true,
-    "scripts": {
-        "start": "webpack-dev-server",
-        "build": "webpack -p",
-        "test:live": "webpack-dev-server --config webpack.tests.config.js"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.6.4",
-        "@babel/plugin-transform-runtime": "^7.6.2",
-        "@babel/preset-env": "^7.9.6",
-        "@babel/runtime": "^7.6.3",
-        "babel-loader": "^8.0.5",
-        "copy-webpack-plugin": "^6.1.0",
-        "core-js": "^3.3.2",
-        "css-loader": "^4.2.1",
-        "file-loader": "^4.2.0",
-        "html-webpack-plugin": "^3.2.0",
-        "mini-css-extract-plugin": "^0.10.0",
-        "react": "^16.10.2",
-        "react-dom": "^16.10.2",
-        "remotedev": "^0.2.9",
-        "resolve-url-loader": "^3.1.2",
-        "sass": "^1.26.10",
-        "sass-loader": "^9.0.3",
-        "selfsigned": "^1.10.8",
-        "style-loader": "^1.2.1",
-        "terser": "^4.3.9",
-        "webpack": "^4.41.2",
-        "webpack-cli": "^3.3.9",
-        "webpack-dev-server": "^3.8.2"
-    }
+  "name": "primd_web",
+  "version": "1.0.0",
+  "description": "The source code for primd.net. Run on AWS Lightsail server.",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/primd-os/website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/primd-os/website/issues"
+  },
+  "homepage": "https://github.com/primd-os/website#readme",
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "unirest": "^0.6.0"
+  }
 }
